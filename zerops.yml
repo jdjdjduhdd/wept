@@ -1,19 +1,10 @@
 zerops:
-
-setup: docker
-
-run:
-
-hase: docker@latest
-
-prepareCommands:
-
-docker image pull ghcr.io/jdjdjduhdd/wept:latest
-
-start: docker run-network-host ghcr.io/jdjdjduhdd/wept:latest
-
-ports:
-
-port: 2053
-
-httpSupport: true
+  - setup: wept
+    run:
+      base: docker@26.1
+      prepareCommands:
+        - docker image pull ghcr.io/jdjdjduhdd/wept:latest
+      start: docker run --network host ghcr.io/jdjdjduhdd/wept:latest
+      ports:
+        - port: 2053
+          httpSupport: true
